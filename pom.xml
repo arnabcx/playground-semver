@@ -10,7 +10,7 @@
     </parent>
     <groupId>com.tsystems</groupId>
     <artifactId>sd-factory</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
     <description>Self-Description Hub Prototype</description>
     <packaging>jar</packaging>
     <properties>

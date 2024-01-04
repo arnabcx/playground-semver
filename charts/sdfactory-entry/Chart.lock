@@ -1,0 +1,6 @@
+dependencies:
+- name: sdfactory
+  repository: https://eclipse-tractusx.github.io/charts/dev
+  version: 2.1.8
+digest: sha256:71f8be4115cb27431fa1a48cc946dc714f24c97e5837a1922fd4c5e39c7d816f
+generated: "2023-11-21T00:59:47.308036+01:00"

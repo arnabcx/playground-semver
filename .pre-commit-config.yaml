@@ -1,0 +1,30 @@
+default_stages: [pre-commit]
+default_install_hook_types: [pre-commit, commit-msg, post-commit]
+repos:
+  - repo: https://github.com/dtaivpp/commit-msg-regex-hook
+    rev: v0.2.1
+    hooks:
+      - id: commit-msg-regex-hook
+        name: Validate commit message format
+        args: ["--pattern='\\[\\b[A-Z][A-Z0-9_]+-[1-9][0-9]*\\]\\[(major|minor|patch)\\]\\:\\s\\w+'", "--failure_message=\tCommits need to mention a JIRA ticket, version impact and \n\ta description, e.g.: '[ABC-123][minor]: message' \n\tRegex:'\\[\\b[A-Z][A-Z0-9_]+-[1-9][0-9]*\\]\\[(major|minor|patch)\\]\\:\\s\\w+'"]
+        stages: [commit-msg]
+  - repo: https://github.com/gitleaks/gitleaks
+    rev: v8.16.1
+    hooks:
+      # Detect secrets
+      - id: gitleaks
+        name: Check for secrets being committed
+  - repo: https://github.com/ejba/pre-commit-maven
+    rev: v0.3.3
+    hooks:
+      # Code style
+      - id: maven
+        name: Checkstyle
+        args: ["-B --no-transfer-progress checkstyle:check"]
+      - id: maven
+        name: Spotless
+        args: ["-B --no-transfer-progress spotless:check"]
+      # Code quality
+      - id: maven
+        name: Spotbugs
+        args: ["-B --no-transfer-progress spotbugs:spotbugs"]

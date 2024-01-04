@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="SdfactoryAPITesting">
+    <listeners>
+        <listener class-name="org.eclipse.tractusx.selfdescriptionfactory.runner.TestNGListener"/>
+    </listeners>
+    <test name="SdFactory">
+        <packages>
+            <package name="org.eclipse.tractusx.selfdescriptionfactory.runner.*"/>
+        </packages>
+    </test>
+</suite>

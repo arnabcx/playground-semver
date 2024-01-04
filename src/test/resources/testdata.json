@@ -1,0 +1,30 @@
+{
+  "@context": [
+    "https://www.w3.org/2018/credentials/v1",
+    "https://registry.lab.gaia-x.eu/development/api/trusted-schemas-registry/v2/schemas",
+    "https://cfxpublicassets.blob.core.windows.net/sd-factory/dev/sd-document-v22.10.jsonld"
+  ],
+  "type": [
+    "VerifiableCredential"
+  ],
+  "issuanceDate": "2023-07-21T12:29:31Z",
+  "expirationDate": "2023-10-19T12:29:31Z",
+  "credentialSubject": {
+    "id": "did:sov:AAAyVfpadka4iDqwCLrYL3",
+    "type": "gx:LegalParticipant",
+    "ctxsd:bpn": "BPNL000000000001",
+    "gx:name": "smartSense Consulting Solutions pvt ltd",
+    "gx:legalRegistrationNumber": [
+      {
+        "gx:vatID": "DE118645675"
+      }
+    ],
+    "gx:headquarterAddress": {
+      "gx:addressCountryCode": "DE"
+    },
+    "gx:legalAddress": {
+      "gx:countrySubdivisionCode": "DE-HH"
+    }
+  },
+  "issuer": "BPNL000000000000"
+}

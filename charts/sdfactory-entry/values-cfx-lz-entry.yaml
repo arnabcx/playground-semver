@@ -1,0 +1,60 @@
+replicaCount: 1
+
+image:
+  # -- Image to use for deploying an application
+  repository: "tractusx/sdfactory"
+  # -- Set the Image Pull Policy
+  pullPolicy: Always
+  # -- For PROD tag needs to be empty "" to be picked up from Chart.yaml
+  tag: "2.1.7"
+
+imagePullSecrets: false
+
+swagger_enabled: true
+
+ingress:
+  enabled: true
+  annotations:
+    #kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/use-regex: "true"
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+  className: "nginx"
+  host: "sdfactory.entry.cofinity-x.com"
+  hosts:
+    - host: sdfactory.entry.cofinity-x.com
+      paths:
+        - path: /
+          pathType: ImplementationSpecific
+
+  tls: false
+
+service:
+  type: ClusterIP
+  port: 80
+  targetPort: 8080
+
+sdfactory:
+  secret:
+    jwkSetUri: "<path:sd-factory/data/idp#jwkSetUri>"
+    clientId: "<path:sd-factory/data/idp#clientId>"
+    clientSecret: "<path:sd-factory/data/idp#clientSecret>"
+    authServerUrl: "<path:sd-factory/data/idp#auth-server-url>"
+    realm: "<path:sd-factory/data/idp#realm>"
+    resource: "<path:sd-factory/data/idp#resource>"
+    custodianWalletUri: "<path:sd-factory/data/miw#uri>"
+    clearingHouseUri: "<path:sd-factory/data/clearingHouse#uri>"
+    clearingHouseServerUrl: "<path:sd-factory/data/clearingHouse#serverUrl>"
+    clearingHouseRealm: "<path:sd-factory/data/clearingHouse#realm>"
+    clearingHouseClientId: "<path:sd-factory/data/clearingHouse#clientId>"
+    clearingHouseClientSecret: "<path:sd-factory/data/clearingHouse#clientSecret>"
+
+
+# -- Pod resources requests and limits configuration
+# -- Pod resources requests and limits configuration
+resources:
+  requests:
+    cpu: 200m
+    memory: 300Mi
+  limits:
+    cpu: 500m
+    memory: 1024Mi

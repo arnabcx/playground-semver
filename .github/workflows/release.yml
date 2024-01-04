@@ -33,7 +33,7 @@ jobs:
 
     # Build with Maven
     - name: Build with Maven
-      run: mvn -B package --file pom.xml
+      run: mvn --batch-mode --no-transfer-progress --file pom.xml clean package spotbugs:spotbugs
 
     # Semantic Release: Analyze commits to determine the version increment
     - name: Semantic Release

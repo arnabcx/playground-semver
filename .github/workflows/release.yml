@@ -1,0 +1,54 @@
+name: Java CI with Maven
+
+on:
+  push:
+    branches:
+      - main
+    tags:
+      - 'v*'
+
+jobs:
+  build-and-release:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        fetch-depth: 0  # ensures that all history is fetched
+
+    # Setup Java environment
+    - name: Set up JDK 11
+      uses: actions/setup-java@v2
+      with:
+        java-version: '11'
+        distribution: 'adopt'
+
+    # Cache Maven packages to speed up builds
+    - name: Cache Maven packages
+      uses: actions/cache@v2
+      with:
+        path: ~/.m2
+        key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
+        restore-keys: ${{ runner.os }}-m2
+
+    # Build with Maven
+    - name: Build with Maven
+      run: mvn -B package --file pom.xml
+
+    # Semantic Release: Analyze commits to determine the version increment
+    - name: Semantic Release
+      if: github.ref == 'refs/heads/main'  # ensures that release runs only on main branch
+      uses: cycjimmy/semantic-release-action@v2
+      with:
+        branch: main
+        dry_run: false
+        extra_plugins: |
+          @semantic-release/changelog
+          @semantic-release/maven
+          @semantic-release/git
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # GitHub token for pushing tags and changes
+        GIT_AUTHOR_NAME: github-actions[bot]
+        GIT_AUTHOR_EMAIL: 41898282+github-actions[bot]@users.noreply.github.com
+        GIT_COMMITTER_NAME: github-actions[bot]
+        GIT_COMMITTER_EMAIL: 41898282+github-actions[bot]@users.noreply.github.com

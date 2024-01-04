@@ -1,7 +1,37 @@
 {
+  "name": "release-github-playground",
+  "private": true,
+  "plugins": [
+    "@semantic-release/commit-analyzer",
+    "@semantic-release/release-notes-generator",
+    "@semantic-release/github",
+    [
+      "@semantic-release/npm",
+      {
+        "npmPublish": false,
+        "tarballDir": false
+      }
+    ],
+    [
+      "@semantic-release/exec",
+      {
+        "prepareCmd": "set-version ${nextRelease.version}",
+        "publishCmd": "publish-package"
+      }
+    ]
+  ],
+  "release": {
+    "branches": [
+      "main"
+    ]
+  },
+  "devDependencies": {
+    "@conveyal/maven-semantic-release": "github:conveyal/maven-semantic-release",
+    "semantic-release": "^22.0.12"
+  },
   "dependencies": {
-    "@conveyal/maven-semantic-release": "^5.0.0",
-    "@semantic-release/changelog": "^6.0.3",
-    "@semantic-release/git": "^10.0.1"
+    "qs": "^6.11.2",
+    "xml2js": "^0.5.0",
+    "xml2js-es6-promise": "^1.0.1"
   }
 }

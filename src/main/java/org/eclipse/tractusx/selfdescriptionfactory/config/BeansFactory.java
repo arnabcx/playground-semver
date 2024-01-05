@@ -50,3 +50,5 @@ public class BeansFactory {
                 .target(Target.EmptyTarget.create(KeycloakClient.class));
     }
 }
+
+// Fix something in the comments

@@ -22,7 +22,7 @@
   ],
   "release": {
     "branches": [
-      "main"
+      "prod"
     ]
   },
   "devDependencies": {

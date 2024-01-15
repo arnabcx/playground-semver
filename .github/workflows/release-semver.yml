@@ -2,9 +2,7 @@ name: Release
 on:
   push:
     branches:
-      - main
-    tags:
-      - 'v*'
+      - prod
 
 permissions:
   contents: read # for checkout
@@ -32,14 +30,23 @@ jobs:
         with:
           java-version: '21'
           distribution: 'adopt'
-      - name: Install dependencies
-        run: npm clean-install --force
-      - name: Verify the integrity of provenance attestations and registry signatures for installed dependencies
-        run: npm audit signatures
+      # - name: Install dependencies
+      #   run: npm clean-install --force
+      # - name: Verify the integrity of provenance attestations and registry signatures for installed dependencies
+      #   run: npm audit signatures
+      # - name: Release
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      #   run: |
+      #     echo "JAVA_HOME: ${JAVA_HOME}"
+      #     echo "# npx semantic-release --prepare @conveyal/maven-semantic-release --publish @semantic-release/github,@conveyal/maven-semantic-release --verify-conditions @semantic-release/github,@conveyal/maven-semantic-release --verify-release @conveyal/maven-semantic-release --use-conveyal-workflow --dev-branch=dev --skip-maven-deploy"
+      #     npx semantic-release --prepare @conveyal/maven-semantic-release --publish @semantic-release/github,@conveyal/maven-semantic-release --verify-conditions @semantic-release/github,@conveyal/maven-semantic-release --verify-release @conveyal/maven-semantic-release --use-conveyal-workflow --dev-branch=main-release-dev --skip-maven-deploy
       - name: Release
+        uses: cycjimmy/semantic-release-action@v4
+        with:
+          # You can specify specifying version range for the extra plugins if you prefer.
+          extra_plugins: |
+            @conveyal/maven-semantic-release
+            @semantic-release/github
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          echo "JAVA_HOME: ${JAVA_HOME}"
-          echo "# npx semantic-release --prepare @conveyal/maven-semantic-release --publish @semantic-release/github,@conveyal/maven-semantic-release --verify-conditions @semantic-release/github,@conveyal/maven-semantic-release --verify-release @conveyal/maven-semantic-release --use-conveyal-workflow --dev-branch=dev --skip-maven-deploy"
-          npx semantic-release --prepare @conveyal/maven-semantic-release --publish @semantic-release/github,@conveyal/maven-semantic-release --verify-conditions @semantic-release/github,@conveyal/maven-semantic-release --verify-release @conveyal/maven-semantic-release --use-conveyal-workflow --dev-branch=main-release-dev --skip-maven-deploy

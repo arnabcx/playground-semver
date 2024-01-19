@@ -17,8 +17,6 @@ runs:
         npm clean-install --force
         npm audit signatures
     shell: bash
-    # name: 'Install Dependencies'
-    # description: 'Install dependencies & Verify the integrity of provenance attestations and registry signatures for installed dependencies'
   - run: |
         if [ "${{ inputs.buildType }}" == "maven" ]; then
         npx semantic-release --prepare @conveyal/maven-semantic-release --publish @semantic-release/github,@conveyal/maven-semantic-release --verify-conditions @semantic-release/github,@conveyal/maven-semantic-release --verify-release @conveyal/maven-semantic-release --use-conveyal-workflow --dev-branch="${{inputs.devBranch}}" --skip-maven-deploy

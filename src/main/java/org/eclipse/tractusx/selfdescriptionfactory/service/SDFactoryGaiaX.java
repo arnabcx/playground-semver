@@ -65,3 +65,5 @@ public class SDFactoryGaiaX implements SDFactory{
         clearingHouse.sendToClearingHouse(verifiableCredential, externalId.toString());
     }
 }
+
+// Another comment without any reason

@@ -2,8 +2,21 @@
 
 A Self Description document (SD-document) is provided for any participant of this data
 space. The Self Descriptions are stored inside the Self Description Hub. Self-Description
-Factory (SD-Factory) component is responsible for the creation of Self Descriptions. This
-component gets input data from the Onboarding Tool, which prepares the data for the SD-Factory,
+F
+
+
+
+
+actory (SD-Factory) component is responsible for the creation of Self Descriptions. This
+c
+o
+m
+p
+o
+n
+e
+n
+t gets input data from the Onboarding Tool, which prepares the data for the SD-Factory,
 creates a Verifiable Credential and passes the document to the
 [Managed Identity Wallet](https://github.com/eclipse-tractusx/managed-identity-wallets)
 based on the Custodian for the signature. The result is sent to the Compliance Service for

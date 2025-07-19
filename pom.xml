@@ -141,7 +141,7 @@
         <dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-oauth2-resource-server</artifactId>
-            <version>6.1.2</version>
+            <version>6.5.1</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.security</groupId>
@@ -431,7 +431,7 @@
                 <version>2.38.0</version>
                 <configuration>
                     <java>
-                        <googleJavaFormat />
+                        <googleJavaFormat/>
                     </java>
                 </configuration>
             </plugin>
